@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
-import 'pages/greetings.dart';
-import 'pages/numbers.dart';
-import 'pages/commonphrases.dart';
 
 void main() {
   runApp(const MyApp());

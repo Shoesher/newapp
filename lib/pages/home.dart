@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:newapp/pages/profile.dart';
 import 'package:newapp/pages/settings.dart';
 import 'package:newapp/pages/shop.dart';
+import 'package:newapp/pages/greetings.dart';
+import 'package:newapp/pages/numbers.dart';
+import 'package:newapp/pages/commonphrases.dart';
+// Add imports for Family, Food, Animals, Nature, Traditions pages as you create them
+// import 'package:newapp/pages/family_page.dart';
+// import 'package:newapp/pages/food_page.dart';
+// import 'package:newapp/pages/animals_page.dart';
+// import 'package:newapp/pages/nature_page.dart';
+// import 'package:newapp/pages/traditions_page.dart';
+
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -33,14 +43,14 @@ class Homepage extends StatelessWidget {
             icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Profile()));
+                  MaterialPageRoute(builder: (context) => const Profile(currentLives: 5, currentStreak: 2, currentXp: 1250,)));
             },
           ),
           IconButton(
             icon: const Icon(Icons.shopping_bag, color: Colors.white),
             onPressed: () {
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Shop()));
+                  MaterialPageRoute(builder: (context) => const Shop()));
             },
           ),
         ],
@@ -101,7 +111,7 @@ class Homepage extends StatelessWidget {
           children: [
             Column(
               children: [
-                Icon(Icons.local_fire_department, color: Colors.red, size: 30),
+                const Icon(Icons.local_fire_department, color: Colors.red, size: 30),
                 const SizedBox(height: 5),
                 const Text(
                   '2', //streak value
@@ -112,7 +122,7 @@ class Homepage extends StatelessWidget {
             ),
             Column(
               children: [
-                Icon(Icons.star, color: Colors.amber, size: 30),
+                const Icon(Icons.star, color: Colors.amber, size: 30),
                 const SizedBox(height: 5),
                 const Text(
                   '1250', //XP Value
@@ -123,7 +133,7 @@ class Homepage extends StatelessWidget {
             ),
             Column(
               children: [
-                Icon(Icons.bolt, color: Colors.blue, size: 30),
+                const Icon(Icons.heart_broken_outlined, color: Colors.cyanAccent, size: 30),
                 const SizedBox(height: 5),
                 const Text(
                   '5', //Lives Value
@@ -137,7 +147,6 @@ class Homepage extends StatelessWidget {
       ),
     );
   }
-
   Widget _buildTopicSection(String title, List<Widget> tiles) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,7 +172,23 @@ class Homepage extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: InkWell(
         onTap: () {
-          print('$topicName tapped');
+          // New navigation logic based on topicName
+          switch (topicName) {
+            case 'Greetings':
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Greetings()));
+              break;
+            case 'Numbers':
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Numbers()));
+              break;
+            case 'Common Phrases':
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Commonphrases()));
+              break;
+            default:
+              print('$topicName tapped (no specific navigation defined)');
+          }
         },
         child: Padding(
           padding: const EdgeInsets.all(16.0),
